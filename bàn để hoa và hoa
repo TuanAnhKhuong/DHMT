@@ -1,0 +1,44 @@
+void Hoa() {
+	HoaVan2();
+	//nhị hoa
+	control = 1;
+	Mau(mauCauThang);
+	TaoHinhTru(Translate(0, 0, 0) * Scale(1, 1, 0.04));
+	Mau(vec4(0.42, 0.557, 0.137, 1));
+	Tao(Translate(0, -3, 0) * Scale(0.1, 5, 0.029));
+}
+void binh() {
+	control2 = Scale(1.5, 1.5, 1.5);
+	Mau(vec4(0.251, 0.878, 0.816, 1));
+	for (int i = 1; i <= 30; i++) {
+		Tao(RotateY(i * 20) * RotateZ(20) * Translate(0, 0.75, 0) * Scale(0.38, 4, 0.38));
+	}
+}
+void binhHoa() {
+	control = 1;
+	control2 = 1;
+	control3 = Translate(-8.2, -0.65, 3.8) * RotateY(90) * Scale(0.25, 0.25, 0.25);
+	binh();
+	control2 = Translate(0, 8, 0);
+	Hoa();
+	control2 = Translate(0, 7, 0) * Translate(-0.1, 0, 0.3) * Translate(0, -5, 0) * RotateZ(15) * Translate(0, 5, 0);
+	Hoa();
+	control2 = Translate(0, 7, 0) * Translate(-0.1, 0, 0.3) * RotateY(60) * Translate(0, -5, 0) * RotateZ(15) * Translate(0, 5, 0);
+	Hoa();
+	control2 = Translate(0, 7, 0) * Translate(0.1, 0, -0.3) * Translate(0, -5, 0) * RotateZ(-15) * Translate(0, 5, 0);
+	Hoa();
+	control2 = Translate(0, 7, 0) * Translate(0.1, 0, 0.5) * RotateY(150) * Translate(0, -5, 0) * RotateZ(15) * Translate(0, 5, 0);
+	Hoa();
+
+}
+void KeBinhHoa() {
+	control = Scale(0.8, 0.8, 0.8) * Translate(-10.5, -3.4, 4.5);
+	control2 = 1;
+	control3 = 1;
+	Mau(vec4(0.196, 0.804, 0.196, 1));
+	for (int i = 1; i <= 5; i++) {
+		TaoHinhTru2(RotateY(i * 72) * Translate(0, 0, 1) * Scale(0.1, 4, 0.1) * RotateX(90));
+	}
+	TaoHinhTru2(Translate(0, 2, 0) * Scale(2.5, 0.1, 2.5) * RotateX(90));
+
+}
