@@ -1,0 +1,70 @@
+void Top_12h() {
+	Tao(Translate(-0.03, 0.2, -0.04) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, 0.2, -0.02) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, 0.2, +0.02) * RotateX(45) * Scale(0.01, 0.06, 0.01));
+	Tao(Translate(-0.03, 0.2, +0.02) * RotateX(-45) * Scale(0.01, 0.06, 0.01));
+}
+void Bot_6h() {
+	Tao(Translate(-0.03, -0.2, -0.03) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, -0.2, 0) * RotateX(-30) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, -0.2, 0.02) * RotateX(30) * Scale(0.01, 0.05, 0.01));
+}
+void Left_9h() {
+	Tao(Translate(-0.03, 0, 0.22) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, 0, 0.18) * RotateX(45) * Scale(0.01, 0.06, 0.01));
+	Tao(Translate(-0.03, 0, 0.18) * RotateX(-45) * Scale(0.01, 0.06, 0.01));
+}
+void Right_3h() {
+	Tao(Translate(-0.03, 0, -0.22) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, 0, -0.2) * Scale(0.01, 0.05, 0.01));
+	Tao(Translate(-0.03, 0, -0.18) * Scale(0.01, 0.05, 0.01));
+}
+void KimGio() {
+	Mau(mauSoGio);
+	Tao(Translate(-0.03, 0.06, 0) * Scale(0.01, 0.12, 0.01));
+}
+void KimPhut() {
+	Mau(mauSoGio);
+	Tao(Translate(-0.03, 0.085, 0) * Scale(0.01, 0.155, 0.01));
+}
+void KimGiay() {
+	Mau(mauKimGiay);
+	Tao(Translate(-0.03, 0.075, 0) * Scale(0.01, 0.16, 0.01));
+}
+
+void MatDongHo() {
+	Mau(mauSoGio);
+	Top_12h();
+	Bot_6h();
+	Left_9h();
+	Right_3h();
+
+	Mau(mauMatDongHo);
+	TaoHinhTru2(RotateY(90) * Translate(0, 0, -0.06) * Scale(0.5, 0.5, 0.05));
+}
+GLfloat kimGiayQuay = 0;
+GLfloat kimPhutQuay = 0;
+GLfloat kimGioQuay = 0;
+
+void DongHo() {
+	control = Translate(5.0, 0, -14) * Scale(3, 3, 3) * RotateY(-90.0); control2 = 1; control3 = 1;
+	control2 = Translate(-9.6, 2, 0);
+	MatDongHo();
+
+	time_t now = time(0);
+	tm* timeInfor = localtime(&now);
+	int hour = timeInfor->tm_hour;
+	int min = timeInfor->tm_min;
+	int sec = timeInfor->tm_sec;
+
+	mat4 tmp = control;
+	kimGiayQuay = 360.0 * sec / 60;
+	kimPhutQuay = 360.0 * min / 60 + kimGiayQuay / 60;
+	kimGioQuay = 360.0 * hour / 12 + kimPhutQuay / 60;
+	control = tmp * RotateX(-kimGiayQuay);
+	KimGiay();
+	control = tmp * RotateX(-kimPhutQuay);
+	KimPhut();
+	control = tmp * RotateX(-kimGioQuay);
+	KimGio();
+}
